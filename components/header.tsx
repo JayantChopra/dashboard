@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Moon, Sun, Bell, Settings } from "lucide-react"
+import { Search, Moon, Sun, Bell, Settings, User, LogOut } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -10,9 +10,15 @@ import { Badge } from "@/components/ui/badge"
 export function Header() {
   const { theme, setTheme } = useTheme()
   const [notificationCount, setNotificationCount] = useState(3)
+  const [showUserMenu, setShowUserMenu] = useState(false)
 
   const clearNotifications = () => {
     setNotificationCount(0)
+  }
+
+  const handleLogout = () => {
+    console.log("Logging out...")
+    setShowUserMenu(false)
   }
 
   return (
@@ -68,6 +74,41 @@ export function Header() {
         <Button variant="default" size="sm">
           Deploy
         </Button>
+
+        <div className="relative">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowUserMenu(!showUserMenu)}
+            aria-label="User menu"
+            data-testid="user-menu-button"
+          >
+            <User className="h-4 w-4" />
+          </Button>
+          {showUserMenu && (
+            <div
+              className="absolute right-0 top-10 w-48 bg-background border rounded-md shadow-lg py-1 z-50"
+              data-testid="user-menu-dropdown"
+            >
+              <button
+                className="w-full px-4 py-2 text-left text-sm hover:bg-muted flex items-center gap-2"
+                onClick={() => setShowUserMenu(false)}
+                data-testid="profile-link"
+              >
+                <User className="h-4 w-4" />
+                Profile
+              </button>
+              <button
+                className="w-full px-4 py-2 text-left text-sm hover:bg-muted flex items-center gap-2 text-destructive"
+                onClick={handleLogout}
+                data-testid="logout-button"
+              >
+                <LogOut className="h-4 w-4" />
+                Logout
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   )
