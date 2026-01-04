@@ -20,6 +20,21 @@ export function Header() {
     { icon: Upload, label: "Upload", shortcut: "U", action: () => console.log("Upload") },
   ]
 
+  // Close menus when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement
+      if (!target.closest('[data-testid="quick-actions-button"]') &&
+          !target.closest('[data-testid="quick-actions-menu"]')) {
+        setShowQuickActions(false)
+      }
+    }
+    if (showQuickActions) {
+      document.addEventListener('click', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
+    }
+  }, [showQuickActions])
+
   const clearNotifications = () => {
     setNotificationCount(0)
   }
