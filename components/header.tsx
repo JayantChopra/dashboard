@@ -1,12 +1,19 @@
 "use client"
 
-import { Search, Moon, Sun } from "lucide-react"
+import { Search, Moon, Sun, Bell, Settings } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Badge } from "@/components/ui/badge"
 
 export function Header() {
   const { theme, setTheme } = useTheme()
+  const [notificationCount, setNotificationCount] = useState(3)
+
+  const clearNotifications = () => {
+    setNotificationCount(0)
+  }
 
   return (
     <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6">
@@ -15,7 +22,7 @@ export function Header() {
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             type="search"
-            placeholder="Search..."
+            placeholder="Search projects, settings, or help..."
             className="pl-10"
           />
         </div>
@@ -25,14 +32,40 @@ export function Header() {
         <Button
           variant="ghost"
           size="icon"
+          onClick={clearNotifications}
+          className="relative"
+          aria-label="Notifications"
+        >
+          <Bell className="h-4 w-4" />
+          {notificationCount > 0 && (
+            <Badge
+              variant="destructive"
+              className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs"
+            >
+              {notificationCount}
+            </Badge>
+          )}
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
+          aria-label="Settings"
+        >
+          <Settings className="h-4 w-4" />
+        </Button>
+
+        <Button
+          variant="ghost"
+          size="icon"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          aria-label="Toggle theme"
         >
           <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
         </Button>
 
-        <Button variant="outline" size="sm">
+        <Button variant="default" size="sm">
           Deploy
         </Button>
       </div>
