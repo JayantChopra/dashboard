@@ -1,8 +1,8 @@
 "use client"
 
-import { Search, Moon, Sun, Bell, Settings, User, LogOut } from "lucide-react"
+import { Search, Moon, Sun, Bell, Settings, User, LogOut, HelpCircle, Command } from "lucide-react"
 import { useTheme } from "next-themes"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
@@ -11,6 +11,7 @@ export function Header() {
   const { theme, setTheme } = useTheme()
   const [notificationCount, setNotificationCount] = useState(3)
   const [showUserMenu, setShowUserMenu] = useState(false)
+  const [showHelpMenu, setShowHelpMenu] = useState(false)
 
   const clearNotifications = () => {
     setNotificationCount(0)
@@ -20,6 +21,22 @@ export function Header() {
     console.log("Logging out...")
     setShowUserMenu(false)
   }
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault()
+        document.querySelector<HTMLInputElement>('input[type="search"]')?.focus()
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === '/') {
+        e.preventDefault()
+        setShowHelpMenu(prev => !prev)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [])
 
   return (
     <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6">
@@ -74,6 +91,46 @@ export function Header() {
         <Button variant="default" size="sm">
           Deploy
         </Button>
+
+        <div className="relative">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowHelpMenu(!showHelpMenu)}
+            aria-label="Help"
+            data-testid="help-button"
+          >
+            <HelpCircle className="h-4 w-4" />
+          </Button>
+          {showHelpMenu && (
+            <div
+              className="absolute right-0 top-10 w-64 bg-background border rounded-md shadow-lg p-3 z-50"
+              data-testid="help-menu"
+            >
+              <h4 className="font-semibold text-sm mb-2">Keyboard Shortcuts</h4>
+              <div className="space-y-2 text-sm">
+                <div className="flex items-center justify-between">
+                  <span>Search</span>
+                  <kbd className="px-2 py-1 bg-muted rounded text-xs flex items-center gap-1">
+                    <Command className="h-3 w-3" /> K
+                  </kbd>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Toggle Help</span>
+                  <kbd className="px-2 py-1 bg-muted rounded text-xs flex items-center gap-1">
+                    <Command className="h-3 w-3" /> /
+                  </kbd>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span>Toggle Theme</span>
+                  <kbd className="px-2 py-1 bg-muted rounded text-xs flex items-center gap-1">
+                    <Command className="h-3 w-3" /> D
+                  </kbd>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="relative">
           <Button
