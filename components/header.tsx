@@ -1,12 +1,21 @@
 "use client"
 
-import { Search, Moon, Sun } from "lucide-react"
+import { Search, Moon, Sun, Bell } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
+// Utility function to format notification count
+export function formatNotificationCount(count: number): string {
+  if (count <= 0) return ""
+  if (count > 99) return "99+"
+  return count.toString()
+}
+
 export function Header() {
   const { theme, setTheme } = useTheme()
+  const [notificationCount, setNotificationCount] = useState(0)
 
   return (
     <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6">
@@ -22,6 +31,22 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative"
+          data-testid="notifications-button"
+          onClick={() => setNotificationCount(prev => prev > 0 ? 0 : 5)}
+        >
+          <Bell className="h-4 w-4" />
+          {notificationCount > 0 && (
+            <span className="absolute -top-1 -right-1 h-4 min-w-4 rounded-full bg-red-500 text-[10px] font-medium text-white flex items-center justify-center px-1">
+              {formatNotificationCount(notificationCount)}
+            </span>
+          )}
+          <span className="sr-only">Notifications</span>
+        </Button>
+
         <Button
           variant="ghost"
           size="icon"
