@@ -1,9 +1,32 @@
 "use client"
 
-import { Search, Moon, Sun } from "lucide-react"
+import { Search, Moon, Sun, Clock } from "lucide-react"
 import { useTheme } from "next-themes"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+
+/**
+ * Formats a timestamp into a relative time string
+ * @param timestamp - Unix timestamp in milliseconds
+ * @returns Formatted relative time string (e.g., "2 hours ago", "just now")
+ */
+export function formatRelativeTime(timestamp: number): string {
+  const now = Date.now()
+  const diff = now - timestamp
+
+  if (diff < 0) return "in the future"
+  if (diff < 60000) return "just now"
+  if (diff < 3600000) {
+    const mins = Math.floor(diff / 60000)
+    return `${mins} minute${mins > 1 ? 's' : ''} ago`
+  }
+  if (diff < 86400000) {
+    const hours = Math.floor(diff / 3600000)
+    return `${hours} hour${hours > 1 ? 's' : ''} ago`
+  }
+  const days = Math.floor(diff / 86400000)
+  return `${days} day${days > 1 ? 's' : ''} ago`
+}
 
 export function Header() {
   const { theme, setTheme } = useTheme()
