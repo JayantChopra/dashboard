@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils"
 import {
   LayoutDashboard,
   FolderKanban,
-  BarChart3,
   Settings,
   ChevronRight
 } from "lucide-react"
@@ -14,8 +13,8 @@ import {
 const navigation = [
   { name: "Overview", href: "/", icon: LayoutDashboard },
   { name: "Projects", href: "/projects", icon: FolderKanban },
-  { name: "Analytics", href: "/analytics", icon: BarChart3 },
-  { name: "Settings", href: "/settings", icon: Settings },
+  // Removed Analytics - moved to Projects page
+  { name: "Preferences", href: "/preferences", icon: Settings },  // Renamed from Settings
 ]
 
 export function Sidebar() {
@@ -55,7 +54,7 @@ export function Sidebar() {
         })}
       </nav>
 
-      {/* User section */}
+      {/* User section - simplified */}
       <div className="border-t p-4">
         <div className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-secondary/50 cursor-pointer transition-colors">
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-purple-500 text-sm font-semibold text-white">
@@ -63,7 +62,7 @@ export function Sidebar() {
           </div>
           <div className="flex-1 overflow-hidden">
             <p className="text-sm font-medium">John Doe</p>
-            <p className="text-xs text-muted-foreground truncate">john@example.com</p>
+            {/* Removed email display for cleaner UI */}
           </div>
         </div>
       </div>
