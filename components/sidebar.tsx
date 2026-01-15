@@ -8,13 +8,15 @@ import {
   FolderKanban,
   BarChart3,
   Settings,
+  Bell,
   ChevronRight
 } from "lucide-react"
 
 const navigation = [
-  { name: "Overview", href: "/", icon: LayoutDashboard },
+  { name: "Dashboard", href: "/", icon: LayoutDashboard },
   { name: "Projects", href: "/projects", icon: FolderKanban },
   { name: "Analytics", href: "/analytics", icon: BarChart3 },
+  { name: "Notifications", href: "/notifications", icon: Bell },
   { name: "Settings", href: "/settings", icon: Settings },
 ]
 

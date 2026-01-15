@@ -1,13 +1,11 @@
 "use client"
 
-import { Search, Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+import { Search, Bell } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import Link from "next/link"
 
 export function Header() {
-  const { theme, setTheme } = useTheme()
-
   return (
     <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 px-6">
       <div className="flex-1 flex items-center gap-4">
@@ -22,15 +20,12 @@ export function Header() {
       </div>
 
       <div className="flex items-center gap-2">
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-        >
-          <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
+        <Link href="/notifications">
+          <Button variant="ghost" size="icon">
+            <Bell className="h-4 w-4" />
+            <span className="sr-only">Notifications</span>
+          </Button>
+        </Link>
 
         <Button variant="outline" size="sm">
           Deploy
