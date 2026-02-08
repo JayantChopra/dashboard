@@ -83,7 +83,7 @@ export function MatrixRain({ side }: MatrixRainProps) {
   return (
     <canvas
       ref={canvasRef}
-      className={`fixed top-0 ${side === "left" ? "left-0" : "right-0"} pointer-events-none z-50 opacity-70`}
+      className={`fixed top-0 ${side === "left" ? "left-0" : "right-0"} pointer-events-none z-0 opacity-70`}
       style={{ width: "60px" }}
     />
   )
