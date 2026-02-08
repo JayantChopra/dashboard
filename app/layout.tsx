@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { MatrixRain } from "@/components/matrix-rain";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <MatrixRain side="left" />
+          <MatrixRain side="right" />
           {children}
         </ThemeProvider>
       </body>
