@@ -16,6 +16,7 @@ export function Header() {
           <Input
             type="search"
             placeholder="Search..."
+            aria-label="Search dashboard"
             className="pl-10"
           />
         </div>

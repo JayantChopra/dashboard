@@ -74,6 +74,7 @@ export default function ProjectsPage() {
             <Input
               type="search"
               placeholder="Search projects..."
+              aria-label="Search projects"
               className="pl-10"
             />
           </div>

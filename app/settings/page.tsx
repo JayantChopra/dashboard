@@ -33,7 +33,7 @@ export default function SettingsPage() {
                 <Label htmlFor="bio">Bio</Label>
                 <Input id="bio" placeholder="Tell us about yourself" />
               </div>
-              <Button>Save Changes</Button>
+              <Button type="button">Save Changes</Button>
             </CardContent>
           </Card>
 
@@ -49,7 +49,7 @@ export default function SettingsPage() {
                 <Label htmlFor="team">Team Name</Label>
                 <Input id="team" placeholder="Acme Inc." defaultValue="Acme Inc." />
               </div>
-              <Button>Update Team</Button>
+              <Button type="button">Update Team</Button>
             </CardContent>
           </Card>
 
@@ -61,7 +61,7 @@ export default function SettingsPage() {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button variant="destructive">Delete Account</Button>
+              <Button type="button" variant="destructive">Delete Account</Button>
             </CardContent>
           </Card>
         </div>

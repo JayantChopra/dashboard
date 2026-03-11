@@ -103,7 +103,7 @@ export default function Home() {
 
         {/* Recent Deployments */}
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-4">
+          <Card className="md:col-span-2 lg:col-span-4">
             <CardHeader>
               <CardTitle>Recent Deployments</CardTitle>
               <CardDescription>
@@ -114,7 +114,7 @@ export default function Home() {
               <div className="space-y-4">
                 {recentDeployments.map((deployment, index) => (
                   <div
-                    key={index}
+                    key={deployment.project}
                     className="flex items-center justify-between border-b pb-4 last:border-0 last:pb-0"
                   >
                     <div className="space-y-1">
@@ -147,7 +147,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="col-span-3">
+          <Card className="md:col-span-2 lg:col-span-3">
             <CardHeader>
               <CardTitle>Quick Actions</CardTitle>
               <CardDescription>
@@ -155,7 +155,7 @@ export default function Home() {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">
-              <button className="w-full flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-colors hover:bg-accent">
+              <button type="button" className="w-full flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-colors hover:bg-accent">
                 <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
                   +
                 </div>
@@ -166,7 +166,7 @@ export default function Home() {
                   </p>
                 </div>
               </button>
-              <button className="w-full flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-colors hover:bg-accent">
+              <button type="button" className="w-full flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-colors hover:bg-accent">
                 <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
                   <Activity className="h-5 w-5" />
                 </div>
@@ -177,7 +177,7 @@ export default function Home() {
                   </p>
                 </div>
               </button>
-              <button className="w-full flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-colors hover:bg-accent">
+              <button type="button" className="w-full flex items-center gap-3 rounded-lg border p-3 text-left text-sm transition-colors hover:bg-accent">
                 <div className="flex h-10 w-10 items-center justify-center rounded-md bg-primary text-primary-foreground">
                   <Users className="h-5 w-5" />
                 </div>
