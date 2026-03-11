@@ -57,7 +57,12 @@ export function Sidebar() {
 
       {/* User section */}
       <div className="border-t p-4">
-        <div className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-secondary/50 cursor-pointer transition-colors">
+        <div
+          role="button"
+          tabIndex={0}
+          aria-label="User profile menu"
+          className="flex items-center gap-3 rounded-md px-3 py-2 hover:bg-secondary/50 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        >
           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-purple-500 text-sm font-semibold text-white">
             JD
           </div>
