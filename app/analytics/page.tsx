@@ -89,7 +89,7 @@ export default function AnalyticsPage() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-          <Card className="col-span-4">
+          <Card className="md:col-span-2 lg:col-span-4">
             <CardHeader>
               <CardTitle>Visitors Overview</CardTitle>
               <CardDescription>
@@ -134,7 +134,7 @@ export default function AnalyticsPage() {
             </CardContent>
           </Card>
 
-          <Card className="col-span-3">
+          <Card className="md:col-span-2 lg:col-span-3">
             <CardHeader>
               <CardTitle>Weekly Page Views</CardTitle>
               <CardDescription>
